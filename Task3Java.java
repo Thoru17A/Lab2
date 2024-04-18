@@ -1,21 +1,20 @@
-public class Main {
-    public static void main(String[] args) {
-        int[] numbers = {4, 101, 32, 21, 112, 332, 22, 67};
-        System.out.println(sumOfNumbers(numbers));
-    }
+fn main() {
+    let numbers = [4, 101, 32, 21, 112, 332, 22, 67];
+    println!("{}", sum_of_numbers(&numbers));
+}
 
-    public static int sumOfNumbers(int[] numbers) {
-        int sum = 0;
-        for (int number : numbers) {
-            String strNumber = Integer.toString(number);
-            for (int i = 0; i < strNumber.length(); i++) {
-                // Проверяем, что позиция нечетная и цифра на этой позиции нечетная
-                if (i % 2 != 0 && Character.getNumericValue(strNumber.charAt(strNumber.length() - i - 1)) % 2 != 0) {
-                    sum += number;
-                    break; // Переходим к следующему числу, так как число уже подходит
-                }
+fn sum_of_numbers(numbers: &[i32]) -> i32 {
+    let mut sum = 0;
+    for &number in numbers {
+        let str_number = number.to_string();
+        let len = str_number.len();
+        for i in 0..len {
+            // Проверяем, что позиция нечетная и цифра на этой позиции нечетная
+            if i % 2 != 0 && str_number.chars().nth(len - i - 1).unwrap().to_digit(10).unwrap() % 2 != 0 {
+                sum += number;
+                break; // Переходим к следующему числу, так как число уже подходит
             }
         }
-        return sum;
     }
+    sum
 }

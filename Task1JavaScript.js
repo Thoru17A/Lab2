@@ -20,25 +20,25 @@ function AllCooperatives(N, X, S) {
             continue;
         }
 
-        // Check if the left tower is working
+        // Check if the left tower is working within the repair range
         let leftTowerWorks = false;
-        for (let j = i - X; j < i; j++) {
-            if (j >= 0 && towerStates[j] == '1') {
+        for (let j = i - 1; j >= Math.max(0, i - X); j--) {
+            if (towerStates[j] == '1') {
                 leftTowerWorks = true;
                 break;
             }
         }
 
-        // Check if the right tower is working
+        // Check if the right tower is working within the repair range
         let rightTowerWorks = false;
-        for (let j = i + 1; j <= i + X && j < N; j++) {
+        for (let j = i + 1; j <= Math.min(N - 1, i + X); j++) {
             if (towerStates[j] == '1') {
                 rightTowerWorks = true;
                 break;
             }
         }
 
-        // If neither the left nor the right tower is working, return false
+        // If neither the left nor the right tower is working within the repair range, return false
         if (!leftTowerWorks && !rightTowerWorks) {
             return false;
         }

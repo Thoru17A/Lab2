@@ -25,8 +25,8 @@ func AllCooperatives(N: Int, X: Int, S: String) -> Bool {
 
         // Check if the left tower is working
         var leftTowerWorks = false
-        for j in (i - X)...i {
-            if j >= 0 && towerStates[j] == "1" {
+        for j in max(0, i - X)..<i {
+            if towerStates[j] == "1" {
                 leftTowerWorks = true
                 break
             }
@@ -34,7 +34,7 @@ func AllCooperatives(N: Int, X: Int, S: String) -> Bool {
 
         // Check if the right tower is working
         var rightTowerWorks = false
-        for j in i + 1...(i + X).min(N) {
+        for j in (i + 1)..<min(N, i + X + 1) {
             if towerStates[j] == "1" {
                 rightTowerWorks = true
                 break
@@ -50,3 +50,5 @@ func AllCooperatives(N: Int, X: Int, S: String) -> Bool {
     // If all towers can be repaired, return true
     return true
 }
+
+main()

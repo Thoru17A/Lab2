@@ -9,14 +9,12 @@ def find_final(pairs)
   end
 
   # Ищем пункт, который не является начальным для какой-либо пары
-  end_count.keys.each do |end|
-    if !start_count.key?(end)
-      return end
-    end
+  end_count.keys.each do |k|
+    return k unless start_count.key?(k)
   end
 
   # Если все пункты являются начальными для какой-либо пары, возвращаем сообщение о необходимости обращения к специалисту
-  return "обратитесь к специалисту"
+  "обратитесь к специалисту"
 end
 
 puts find_final([["Новосибирск", "Новосибирск"]])
